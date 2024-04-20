@@ -93,7 +93,7 @@ class SimpleRestAPI(Generic[ModelClass, RestModelClass, ModelKeyType]):
 
         def create_model(request:RestCreateModelRequest[RestModelClass]) -> CreateModelResponse[ModelClass]:
             with self.db_factory() as db:
-                return self.model_api.create_model(db, model_api.CreateModelRequest(**request.dict()))
+                return self.model_api.create_model(db, self.model_api.CreateModelRequest(**request.dict()))
         create_model.__annotations__["request"] = self.t_create[0]
 
         def list_models(skip:Optional[int]=None, limit:Optional[int]=None) -> ListModelResponse[ModelClass]:
@@ -110,7 +110,7 @@ class SimpleRestAPI(Generic[ModelClass, RestModelClass, ModelKeyType]):
 
         def update_model(id: ModelKeyType, request:RestUpdateModelRequest) -> UpdateModelResponse[ModelClass]:
             with self.db_factory() as db:
-                service_request = model_api.UpdateModelRequest(
+                service_request = self.model_api.UpdateModelRequest(
                     id = id, **request.dict()
                 )
                 return self.model_api.update_model(db, service_request)
@@ -118,7 +118,7 @@ class SimpleRestAPI(Generic[ModelClass, RestModelClass, ModelKeyType]):
 
         def patch_model(id: ModelKeyType, request:RestPatchModelRequest) -> PatchModelResponse[ModelClass]:
             with self.db_factory() as db:
-                service_request = model_api.PatchModelRequest(
+                service_request = self.model_api.PatchModelRequest(
                     id = id, **request.dict()
                 )
                 return self.model_api.patch_model(db, service_request)
