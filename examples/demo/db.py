@@ -4,7 +4,7 @@ from urllib.parse import quote_plus
 from demo.core.models import Base
 from sqlalchemy.orm import Session
 
-engine = create_engine("sqlite:////home/stonezhong/fastapi-test/db/foo.db")
+engine = create_engine(f"sqlite:///foo.db")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_db():

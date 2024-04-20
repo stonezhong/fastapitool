@@ -1,7 +1,26 @@
 # fastapitool
-Bunch of tools for Fast API
+Bunch of tools for Fast API, that covers:
+- `SimpleModelAPI` class, helps to quickly build CRUD api for db models using SQLAlchemy 2
+- `SimpleRestAPI` class, helps to build REST quickly.
 
-# 测试安装
+# Getting Started
+```bash
+git clone https://github.com/stonezhong/fastapitool.git
+
+# create a python virtual environment
+mkdir -p .venvs
+python3 -m venv .venvs
+source .venvs/bin/activate
+pip install pip setuptools --upgrade
+pip install wheel
+pip install fastapi pydantic "uvicorn[standard]" sqlalchemy fastapitool
+
+# start a demo server
+cd fastapitool/examples
+
+```
+
+# Install
 ```bash
 mkdir -p ~/fastapi-test
 mkdir -p ~/fastapi-test/.venvs
@@ -12,7 +31,7 @@ pip install pip setuptools --upgrade
 pip install wheel
 
 
-pip install fastapi pydantic uvicorn[standard]==0.23.2
+pip install fastapi pydantic uvicorn[standard]
 pip install -e /home/stonezhong/DATA_DISK/projects/fastapitool
 
 # 运行程序
